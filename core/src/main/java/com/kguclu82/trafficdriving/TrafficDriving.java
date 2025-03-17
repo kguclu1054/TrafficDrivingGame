@@ -63,7 +63,7 @@ public class TrafficDriving extends ApplicationAdapter {
 
         font = new BitmapFont();
 
-        // Initial setup for vans
+
         initializeVans();
 
         // Car initial position
@@ -87,7 +87,7 @@ public class TrafficDriving extends ApplicationAdapter {
 
         batch.begin();
 
-        // Draw background
+
         batch.draw(background, backgroundX, 0, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
         batch.draw(background, backgroundX + Gdx.graphics.getWidth(), 0, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
         backgroundX -= backgroundSpeed;
@@ -96,10 +96,10 @@ public class TrafficDriving extends ApplicationAdapter {
             backgroundX = 0;
         }
 
-        // Draw red car
+
         batch.draw(redCar, carX, carY, redCar.getWidth() * scale, redCar.getHeight() * scale);
 
-        // Draw vans
+
         for (int i = 0; i < numVans; i++) {
             if (isVanVisible[i]) {
                 TextureRegion vanRegion = new TextureRegion(vans[i]);
@@ -108,7 +108,7 @@ public class TrafficDriving extends ApplicationAdapter {
 
                 vanX[i] -= vanSpeed[i];
 
-                // If a van goes off-screen, reset its position
+
                 if (vanX[i] < -vans[i].getWidth() * scale * 0.5f) {
                     if (vanTimers[i] <= 0f) {
                         vanTimers[i] = 2f;
@@ -116,16 +116,16 @@ public class TrafficDriving extends ApplicationAdapter {
                         vanTimers[i] -= Gdx.graphics.getDeltaTime();
                     }
 
-                    // Eğer zaman dolduysa, van'ı yeni bir Y konumuna atayarak yeniden getir
+
                     if (vanTimers[i] <= 0f) {
                         vanX[i] = Gdx.graphics.getWidth();
-                        randomizeVanPosition(i);  // Yeniden rastgele bir y konumuna geçir
-                        isVanVisible[i] = true;   // Görünürlüğünü de tekrar ayarla
+                        randomizeVanPosition(i);
+                        isVanVisible[i] = true;
                     }
                 }
 
 
-                // Collision detection
+
                 float carCollisionWidth = redCar.getWidth() * scale * 0.8f;
                 float carCollisionHeight = redCar.getHeight() * scale * 0.8f;
 
@@ -139,14 +139,14 @@ public class TrafficDriving extends ApplicationAdapter {
             }
         }
 
-        // Draw steering wheel
+
         TextureRegion steeringWheelRegion = new TextureRegion(steeringWheel);
         batch.draw(steeringWheelRegion, steeringWheelX, steeringWheelY, steeringWheelWidth / 2, steeringWheelHeight / 2,
             steeringWheelWidth, steeringWheelHeight, 1, 1, steeringAngle);
 
         batch.end();
 
-        // Handle user input for steering wheel
+
         if (Gdx.input.isTouched()) {
             touchX = Gdx.input.getX();
             touchY = Gdx.graphics.getHeight() - Gdx.input.getY();
@@ -165,7 +165,7 @@ public class TrafficDriving extends ApplicationAdapter {
             }
         }
 
-        // Keep the car within bounds
+
         if (carY < 0) carY = 0;
         if (carY > Gdx.graphics.getHeight() - redCar.getHeight() * scale) {
             carY = Gdx.graphics.getHeight() - redCar.getHeight() * scale;
@@ -196,9 +196,9 @@ public class TrafficDriving extends ApplicationAdapter {
         backgroundX = 0;
         isGameOver = false;
 
-        initializeVans();  // Reinitialize vans with random positions
+        initializeVans();
 
-        // Optional: Set other initial conditions, such as score, etc.
+
     }
 
     private void initializeVans() {
@@ -214,7 +214,7 @@ public class TrafficDriving extends ApplicationAdapter {
     }
 
     private void randomizeVanPosition(int i) {
-        // Mevcut kullanılan Y konumlarını listele
+
         ArrayList<Float> usedPositions = new ArrayList<>();
         for (int j = 0; j < numVans; j++) {
             if (i != j && isVanVisible[j]) {
@@ -222,7 +222,7 @@ public class TrafficDriving extends ApplicationAdapter {
             }
         }
 
-        // Kullanılmayan Y konumlarını bul
+
         ArrayList<Float> availablePositions = new ArrayList<>();
         for (float pos : fixedVanYPositions) {
             if (!usedPositions.contains(pos)) {
@@ -230,7 +230,7 @@ public class TrafficDriving extends ApplicationAdapter {
             }
         }
 
-        // Eğer en az bir kullanılmayan pozisyon varsa, onu ata
+
         if (!availablePositions.isEmpty()) {
             Collections.shuffle(availablePositions);
             vanY[i] = availablePositions.get(0);
@@ -239,19 +239,19 @@ public class TrafficDriving extends ApplicationAdapter {
 
 
     private void randomizeVisibleVans() {
-        // Öncelikle tüm van'ları görünmez yap
+
         for (int i = 0; i < numVans; i++) {
             isVanVisible[i] = false;
         }
 
-        // Tüm van'ların indexlerini listeye al ve karıştır
+
         ArrayList<Integer> vanIndices = new ArrayList<>();
         for (int i = 0; i < numVans; i++) {
             vanIndices.add(i);
         }
         Collections.shuffle(vanIndices);
 
-        // Rastgele seçilen 2 van'ı görünür yap
+
         for (int i = 0; i < 2; i++) {
             int selectedVan = vanIndices.get(i);
             isVanVisible[selectedVan] = true;
