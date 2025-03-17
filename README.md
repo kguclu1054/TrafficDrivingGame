@@ -1,35 +1,25 @@
-# Traffic Driving
+# TrafficDriving
 
-A [libGDX](https://libgdx.com/) project generated with [gdx-liftoff](https://github.com/libgdx/gdx-liftoff).
+**TrafficDriving** is a 2D car racing game developed using LibGDX. The player controls a red car and tries to avoid obstacles. The game offers a realistic racing feel with dynamic background scrolling and randomly placed obstacles (vans).
 
-This project was generated with a template including simple application launchers and an `ApplicationAdapter` extension that draws libGDX logo.
+ 📌 Features
 
-## Platforms
+- **Car Control:** The car can be moved up and down using a steering simulation.
+- **Obstacles:** 3 different vans (obstacles) are randomly placed on the road.
+- **Collision Detection:** The game ends when the car collides with any van.
+- **Background Movement:** A scrolling background gives the feeling of an endless road.
+- **Restart Game:** The player can tap the screen to restart the game.
 
-- `core`: Main module with the application logic shared by all platforms.
-- `lwjgl3`: Primary desktop platform using LWJGL3; was called 'desktop' in older docs.
-- `android`: Android mobile platform. Needs Android SDK.
+🎮 Gameplay
 
-## Gradle
+- **Steering Control:** You can control the car's direction by touching the on-screen steering wheel.
+- **Avoiding Obstacles:** Try to cover the longest distance while avoiding randomly placed vans.
+- **Post-Collision:** A "Game Over" message appears, and the player can tap to restart the game.
 
-This project uses [Gradle](https://gradle.org/) to manage dependencies.
-The Gradle wrapper was included, so you can run Gradle tasks using `gradlew.bat` or `./gradlew` commands.
-Useful Gradle tasks and flags:
+ 🛠 Technologies Used
 
-- `--continue`: when using this flag, errors will not stop the tasks from running.
-- `--daemon`: thanks to this flag, Gradle daemon will be used to run chosen tasks.
-- `--offline`: when using this flag, cached dependency archives will be used.
-- `--refresh-dependencies`: this flag forces validation of all dependencies. Useful for snapshot versions.
-- `android:lint`: performs Android project validation.
-- `build`: builds sources and archives of every project.
-- `cleanEclipse`: removes Eclipse project data.
-- `cleanIdea`: removes IntelliJ project data.
-- `clean`: removes `build` folders, which store compiled classes and built archives.
-- `eclipse`: generates Eclipse project data.
-- `idea`: generates IntelliJ project data.
-- `lwjgl3:jar`: builds application's runnable jar, which can be found at `lwjgl3/build/libs`.
-- `lwjgl3:run`: starts the application.
-- `test`: runs unit tests (if any).
+- **Java & LibGDX:** The game engine and main coding language.
+- **Android Studio & Eclipse:** Development environments.
+- **SpriteBatch & Texture:** For handling 2D graphics.
 
-Note that most tasks that are not specific to a single project can be run with `name:` prefix, where the `name` should be replaced with the ID of a specific project.
-For example, `core:clean` removes `build` folder only from the `core` project.
+- Screen Recording
